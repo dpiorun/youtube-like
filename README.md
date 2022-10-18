@@ -1,3 +1,25 @@
+## Run
+Make sure that you have working [Docker](https://www.docker.com/products/overview) and [Docker Compose](https://docs.docker.com/compose/install/).
+
+Build and run instance
+```shell
+make docker build && make docker up
+```
+
+Enjoy at `http://localhost:3000`
+
+To gracefully stop the docker container:
+```shell
+make docker stop
+```
+
+
+## Development
+Before pushing anything run:
+```shell
+make lint
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

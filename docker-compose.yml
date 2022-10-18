@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: .Dockerfile
+    volumes:
+      - ./src/:/src
+      - ./public/:/public
+    environment:
+      - BROWSER=none
+      - CI=true
+    ports:
+      - "3000:3000"
