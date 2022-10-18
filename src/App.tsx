@@ -1,16 +1,12 @@
 import React from 'react';
 import MainContent from './components/MainContent';
-import Sidebar from './components/Sidebar';
 import Topbar from './components/Topbar';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Topbar />
-      <div>
-        <MainContent />
-        <Sidebar />
-      </div>
+      <MainContent />
     </div>
   );
 }

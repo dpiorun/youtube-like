@@ -1,0 +1,10 @@
+#item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 3px;
+}
+
+#item > .thumbnail {
+  margin-inline-end: 8px;
+}

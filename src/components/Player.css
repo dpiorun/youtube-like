@@ -1,0 +1,9 @@
+#player {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+#player > .embeded {
+  align-self: center;
+}
