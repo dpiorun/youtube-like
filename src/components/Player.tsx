@@ -1,20 +1,29 @@
 import parse from 'html-react-parser';
-import { useContext } from 'react';
-import { AppContext } from '../App';
+import { useAppState } from '../services/ContextStateProvider';
 import './Player.css';
+import Spinner from './Spinner';
 
 const Player = () => {
-  const { youtubeVideo } = useContext(AppContext);
+  const { appState } = useAppState();
 
-  if (!youtubeVideo) return <></>;
+  if (!appState.youtubeVideo) return <></>;
 
   return (
     <div id="player">
-      <div className="embeded">{parse(youtubeVideo?.player.embedHtml)}</div>
-      <div>
-        <h2>{youtubeVideo.snippet.title}</h2>
-        <p>{youtubeVideo.snippet.description}</p>
-      </div>
+      {/* <Spinner /> */}
+      {appState.isFetchingYoutubeVideo ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className="embeded">
+            {parse(appState.youtubeVideo?.player.embedHtml)}
+          </div>
+          <div>
+            <h2>{appState.youtubeVideo.snippet.title}</h2>
+            <p>{appState.youtubeVideo.snippet.description}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 };

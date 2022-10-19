@@ -1,24 +1,34 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Topbar.css';
 import logo from '../assets/images/youtube-like.png';
 import { Search, User } from 'react-feather';
-import { AppContext } from '../App';
 import { useSearchList } from '../hooks/useSearchList';
+import { useAppState } from '../services/ContextStateProvider';
 
 const Topbar = () => {
   const [search, setSearch] = useState<string>();
-  const { setYoutubeSearchList, setYoutubeVideo } = useContext(AppContext);
+  const { setAppState } = useAppState();
 
-  const { data, refetch } = useSearchList(search);
+  const { data, refetch, status } = useSearchList(search);
 
   useEffect(() => {
-    if (data) setYoutubeSearchList(data);
-  }, [data, setYoutubeSearchList]);
+    if (data)
+      setAppState((previous) => ({
+        ...previous,
+        youtubeSearchList: data,
+        isFetchingYoutubeSearchList: false,
+      }));
+    else if (status === 'loading')
+      setAppState((previous) => ({
+        ...previous,
+        isFetchingYoutubeSearchList: true,
+      }));
+  }, [data, status, setAppState]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     refetch();
-    setYoutubeVideo(undefined);
+    setAppState((previous) => ({ ...previous, youtubeVideo: undefined }));
   };
 
   return (

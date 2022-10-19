@@ -1,18 +1,29 @@
-import { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../App';
+import { useEffect, useState } from 'react';
 import { useVideo } from '../hooks/useVideo';
+import { useAppState } from '../services/ContextStateProvider';
 import PlaylistItem from './PlaylistItem';
 import './Sidebar.css';
+import Spinner from './Spinner';
 
 const Sidebar = () => {
-  const { youtubeVideo, setYoutubeVideo, youtubeSearchList } =
-    useContext(AppContext);
+  const { appState, setAppState } = useAppState();
+
   const [id, setId] = useState('');
-  const { data, refetch } = useVideo(id);
+  const { data, refetch, status } = useVideo(id);
 
   useEffect(() => {
-    if (data) setYoutubeVideo(data);
-  }, [data, setYoutubeVideo]);
+    if (status === 'loading')
+      setAppState((previous) => ({
+        ...previous,
+        isFetchingYoutubeVideo: true,
+      }));
+    if (data)
+      setAppState((previous) => ({
+        ...previous,
+        youtubeVideo: data,
+        isFetchingYoutubeVideo: false,
+      }));
+  }, [data, status, setAppState]);
 
   const handleClick = (newId: string) => {
     if (newId !== id) {
@@ -23,14 +34,18 @@ const Sidebar = () => {
 
   return (
     <div id="related">
-      {youtubeSearchList?.items.map((item, index) => (
-        <PlaylistItem
-          sm={!!youtubeVideo}
-          item={item}
-          key={index}
-          onClick={() => handleClick(item.id.videoId)}
-        />
-      ))}
+      {appState.isFetchingYoutubeSearchList ? (
+        <Spinner />
+      ) : (
+        appState.youtubeSearchList?.items.map((item, index) => (
+          <PlaylistItem
+            sm={!!appState.youtubeVideo}
+            item={item}
+            key={index}
+            onClick={() => handleClick(item.id.videoId)}
+          />
+        ))
+      )}
     </div>
   );
 };

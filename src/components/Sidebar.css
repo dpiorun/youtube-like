@@ -4,3 +4,7 @@
   align-items: flex-start;
   min-width: 300px;
 }
+
+#related #spinner {
+  padding-top: 33%;
+}
