@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 
-export function useRequest<T = unknown>(fetchFn: () => Promise<T>) {
+export function useRequest<T = unknown>(
+  fetchFn: () => Promise<T>,
+  options?: {
+    enable: boolean;
+  }
+) {
+  const enable = options?.enable ?? true;
   const [data, setData] = useState<T>();
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>();
   const [errorMsg, setErrorMsg] = useState<string>();
   const dataFetchedRef = useRef(false);
 
   useEffect(() => {
-    if (dataFetchedRef.current) return;
+    if (dataFetchedRef.current || !enable) return;
     dataFetchedRef.current = true;
 
     async function manageRequest() {
@@ -26,5 +32,10 @@ export function useRequest<T = unknown>(fetchFn: () => Promise<T>) {
     manageRequest();
   });
 
-  return { data, status, errorMsg };
+  function refetch() {
+    dataFetchedRef.current = false;
+    setData(undefined);
+  }
+
+  return { data, status, errorMsg, refetch };
 }

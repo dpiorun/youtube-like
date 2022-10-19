@@ -1,17 +1,31 @@
+import { BREAKPOINTS, THUMBNAILS_SIZE } from '../constants';
+import { YoutubeSearchResult } from '../types/youtubeTypes';
 import './PlaylistItem.css';
 
-const PlaylistItem = () => {
+interface Props {
+  item: YoutubeSearchResult;
+  onClick: () => void;
+  sm: boolean;
+}
+
+const PlaylistItem = ({ item, onClick, sm }: Props) => {
+  const getWidth = () => {
+    if (matchMedia(`(max-width: ${BREAKPOINTS.sm})`).matches || sm)
+      return THUMBNAILS_SIZE.sm;
+    return THUMBNAILS_SIZE.lg;
+  };
+
   return (
-    <div id="item">
+    <div id="item" onClick={onClick}>
       <div className="thumbnail">
         <img
           alt="thumbnail"
-          width={168}
-          src="https://i.ytimg.com/vi/z1q9NJ1Ur6M/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCs6CnhVebE5I-3xjCO_t19vfH79g"
+          width={getWidth()}
+          src={item.snippet.thumbnails.default.url}
         />
       </div>
       <div>
-        <h3>Title title</h3>
+        <h4>{item.snippet.title}</h4>
       </div>
     </div>
   );

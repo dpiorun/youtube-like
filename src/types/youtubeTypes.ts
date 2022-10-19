@@ -3,6 +3,28 @@ interface PageInfo {
   resultsPerPage: number;
 }
 
+interface SnippetBase {
+  publishedAt: string;
+  channelId: string;
+  title: string;
+  description: string;
+  thumbnails: {
+    default: Thumbnail;
+    medium: Thumbnail;
+    high: Thumbnail;
+  };
+}
+
+interface SnippetVideo extends SnippetBase {
+  categoryId: string;
+  channelTitle: string;
+  liveBroadcastContent: string;
+  localized: {
+    description: string;
+    title: string;
+  };
+}
+
 interface Thumbnail {
   url: string;
   width: number;
@@ -21,18 +43,11 @@ export interface YoutubeSearchListResponse {
 export interface YoutubeSearchResult {
   kind: 'youtube#searchResult';
   etag: string;
-  id: string;
-  snippet: {
-    publishedAt: string;
-    channelId: string;
-    title: string;
-    description: string;
-    thumbnails: {
-      default: Thumbnail;
-      medium: Thumbnail;
-      high: Thumbnail;
-    };
+  id: {
+    kind: 'youtube#video';
+    videoId: string;
   };
+  snippet: SnippetBase;
   channelTitle: string;
   liveBroadcastContent: string;
   publishTime: string;
@@ -47,6 +62,7 @@ export interface YoutubeVideo {
     embedHeight: string;
     embedWidth: string;
   };
+  snippet: SnippetVideo;
 }
 
 export interface YoutubeVideoListResponse {
@@ -62,5 +78,5 @@ export interface VideosSearchParams {
 
 export interface VideosListParams {
   id: string;
-  maxWidth: number;
+  maxWidth?: number;
 }

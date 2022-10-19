@@ -42,7 +42,8 @@
   width: 100%;
 }
 
-.input-group {
+.input-group,
+.searchcontainer form {
   align-items: stretch;
   display: flex;
   flex-wrap: wrap;
@@ -138,7 +139,7 @@ input:focus-visible {
     justify-content: flex-end;
   }
 
-  .searchcontainer > .input-group-merge {
+  .searchcontainer .input-group-merge {
     justify-content: flex-end;
   }
 

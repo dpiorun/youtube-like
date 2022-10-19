@@ -32,7 +32,7 @@ class YoutubeRest {
     const { data } = await this.http.request('videos', {
       params: {
         ...params,
-        part: 'player',
+        part: 'player,snippet',
       },
     });
     return data;
