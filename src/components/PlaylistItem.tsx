@@ -21,7 +21,7 @@ const PlaylistItem = ({ item, onClick, sm }: Props) => {
         <img
           alt="thumbnail"
           width={getWidth()}
-          src={item.snippet.thumbnails.default.url}
+          src={item.snippet.thumbnails.high.url}
         />
       </div>
       <div>

@@ -9,21 +9,28 @@ const Sidebar = () => {
   const { appState, setAppState } = useAppState();
 
   const [id, setId] = useState('');
-  const { data, refetch, status } = useVideo(id);
+  const { data, refetch, status, errorMsg } = useVideo(id);
 
   useEffect(() => {
-    if (status === 'loading')
-      setAppState((previous) => ({
-        ...previous,
-        isFetchingYoutubeVideo: true,
-      }));
     if (data)
       setAppState((previous) => ({
         ...previous,
         youtubeVideo: data,
         isFetchingYoutubeVideo: false,
       }));
-  }, [data, status, setAppState]);
+    else if (status === 'loading')
+      setAppState((previous) => ({
+        ...previous,
+        isFetchingYoutubeVideo: true,
+      }));
+    else if (status === 'error')
+      setAppState((previous) => ({
+        ...previous,
+        isError: true,
+        errorMsg,
+        isFetchingYoutubeVideo: false,
+      }));
+  }, [data, status, setAppState, errorMsg]);
 
   const handleClick = (newId: string) => {
     if (newId !== id) {
@@ -34,6 +41,7 @@ const Sidebar = () => {
 
   return (
     <div id="related">
+      {appState.errorMsg && <div>{appState.errorMsg}</div>}
       {appState.isFetchingYoutubeSearchList ? (
         <Spinner />
       ) : (

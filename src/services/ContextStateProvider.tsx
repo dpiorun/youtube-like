@@ -6,11 +6,14 @@ interface AppState {
   isFetchingYoutubeSearchList: boolean;
   youtubeVideo?: YoutubeVideo;
   isFetchingYoutubeVideo: boolean;
+  isError: boolean;
+  errorMsg?: string;
 }
 
 const initialAppState: AppState = {
   isFetchingYoutubeSearchList: false,
   isFetchingYoutubeVideo: false,
+  isError: false,
 };
 
 interface AppContextStateProps {

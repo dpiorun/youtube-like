@@ -127,6 +127,10 @@ input:focus-visible {
   border: 1px solid #065fd4;
 }
 
+.d-block {
+  display: block !important;
+}
+
 /* Small devices */
 @media only screen and (max-width: 656px) {
   .form-control {

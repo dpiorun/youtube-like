@@ -10,7 +10,7 @@ const Player = () => {
 
   return (
     <div id="player">
-      {/* <Spinner /> */}
+      {appState.errorMsg && <div>{appState.errorMsg}</div>}
       {appState.isFetchingYoutubeVideo ? (
         <Spinner />
       ) : (
