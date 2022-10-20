@@ -1,3 +1,83 @@
+# Youtube-like app
+## Main goals
+1. Use Youtube API.
+2. Apply styling which will make the app look similar to YouTube (no need for it to be exactly the same).
+3. Make the application responsive.
+4. Make content displayable and playable.
+5. Utilize application state.
+6. Visualise data loading states.
+7. Add unit tests.
+8. Add at least one UI test for a happy path related scenario.
+9. It must be possible to run the app by running a single command.
+
+Live preview available at: https://dpiorun.github.io/youtube-like/.
+
+## Tech stack
+* React for the UI.
+* State management with React Context.
+* Avoid using styling libraries like Bootstrap, Foundation, Material UI etc.
+* Typescript.
+* Create React App.
+* Puppeteer for e2e tests, React Testing Library, and Jest for tests.
+* Docker to help development management.
+
+## Run
+To run the app locally it's necessary to obtain the API key. How to do this is described at https://developers.google.com/youtube/v3/docs. API key should be provided in `.env` file. For reference look at the `.env.example`.  
+   
+Make sure that you have working [Docker](https://www.docker.com/products/overview) and [Docker Compose](https://docs.docker.com/compose/install/).
+
+Build and run instance
+```shell
+make docker build && make docker up
+```
+
+Enjoy at `http://localhost:3000`
+
+To gracefully stop the docker container:
+```shell
+make docker stop
+```
+
+
+## Development
+Before pushing anything run:
+```shell
+make lint
+make test
+npm run e2e
+```
+
+## Tests
+Run only the tests that were specified with a pattern or filename:
+```sh
+make test my.test #or
+make test path/to/my-test.js
+```
+
+Additionally you can provide options:
+```sh
+make test "[options]"
+```
+for example:
+```sh
+make test " --coverage" #watch the space before flag, or
+make test "my.test --json"
+```
+
+For list of available options visit [Jest CLI Options](https://jestjs.io/docs/cli).
+
+### Running e2e tests
+Ensure that the application is currently running on http://localhost:3000 and run
+```sh
+npm run e2e
+```
+
+## Deploy on Github pages
+Run 
+```sh
+npm run deploy
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

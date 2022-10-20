@@ -1,0 +1,27 @@
+#player {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+#player .ytp-spinner {
+  padding-top: 56.25%;
+}
+
+#player .embeded {
+  align-self: center;
+  width: 100%;
+  text-align: center;
+}
+
+.embeded iframe {
+  max-width: 100%;
+  max-height: 405px;
+}
+
+/* Bigger devices */
+@media only screen and (min-width: 1000px) {
+  #player {
+    padding-right: 24px;
+  }
+}

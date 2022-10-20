@@ -1,0 +1,158 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+  background-color: #282828;
+}
+
+.logo {
+  padding: 8px 0;
+  overflow: hidden;
+  min-width: fit-content;
+}
+
+.logo img {
+  max-height: 100%;
+}
+
+.searchcontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 0 1 728px;
+  margin-inline-start: 34px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.form-control {
+  background-color: hsl(0, 0%, 7%);
+  border: 1px solid hsla(0, 0%, 53.3%, 0.4);
+  box-shadow: inset 0 1px 2px hsla(0, 0%, 0%, 0);
+  border-radius: 0.1em;
+  color: hsla(0, 100%, 100%, 0.88);
+  display: block;
+  font-size: 1em;
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+}
+
+.input-group,
+.searchcontainer form {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.input-group-text {
+  align-items: center;
+  border: 1px solid hsl(0, 0%, 18.82%);
+  border-radius: 0.2rem;
+  color: gray;
+  display: flex;
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.input-group-merge > .form-control:not(input:focus-visible) {
+  border-right-width: 0;
+}
+
+.input-group-merge > .input-group-text {
+  border-left-width: 0;
+}
+
+.input-group > .form-control {
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  width: 1%;
+}
+
+.input-group > :not(:last-child) {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.input-group > :not(:first-child) {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  margin-left: -1px;
+}
+
+.end {
+  display: flex;
+  flex-direction: row;
+  min-width: 225px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.sign-in-btn {
+  background-color: transparent;
+  border: solid 1px #3ea6ff;
+  border-radius: 0.1em;
+  color: #3ea6ff;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+}
+
+.sign-in-btn-text {
+  padding-left: 0.75em;
+}
+
+.search-btn {
+  background-color: hsla(0, 0%, 100%, 0.08);
+  color: white;
+  width: 64px;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+}
+
+input:focus-visible {
+  outline: auto 0px;
+  border: 1px solid #065fd4;
+}
+
+.d-block {
+  display: block !important;
+}
+
+/* Small devices */
+@media only screen and (max-width: 656px) {
+  .form-control {
+    display: none;
+  }
+
+  .searchcontainer {
+    flex: 1;
+    flex-basis: 1e-9px;
+    justify-content: flex-end;
+    margin-inline-start: unset;
+  }
+
+  .searchcontainer .input-group-merge {
+    justify-content: flex-end;
+  }
+
+  .search-btn {
+    background-color: transparent;
+  }
+
+  .end {
+    min-width: 0;
+  }
+}
