@@ -1,9 +1,9 @@
-interface PageInfo {
+export interface PageInfo {
   totalResults: number;
   resultsPerPage: number;
 }
 
-interface SnippetBase {
+export interface SnippetBase {
   publishedAt: string;
   channelId: string;
   title: string;
@@ -25,7 +25,7 @@ interface SnippetVideo extends SnippetBase {
   };
 }
 
-interface Thumbnail {
+export interface Thumbnail {
   url: string;
   width: number;
   height: number;

@@ -15,7 +15,7 @@ const Player = () => {
         <Spinner />
       ) : (
         <>
-          <div className="embeded">
+          <div className="embeded" data-testid="iframe-container">
             {parse(appState.youtubeVideo?.player.embedHtml)}
           </div>
           <div>

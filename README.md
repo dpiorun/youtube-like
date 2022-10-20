@@ -18,7 +18,28 @@ make docker stop
 Before pushing anything run:
 ```shell
 make lint
+make test
 ```
+
+## Tests
+Run only the tests that were specified with a pattern or filename:
+```sh
+make test my.test #or
+make test path/to/my-test.js
+```
+
+Additionally you can provide options:
+```sh
+make test "[options]"
+```
+for example:
+```sh
+make test " --coverage" #watch the space before flag, or
+make test "my.test --json"
+```
+
+For list of available options visit [Jest CLI Options](https://jestjs.io/docs/cli).
+
 
 # Getting Started with Create React App
 

@@ -2,7 +2,7 @@ import './Spinner.css';
 
 // From https://codepen.io/Webevasion/pen/VQEdRd
 const Spinner = () => (
-  <div id="spinner">
+  <div id="spinner" data-testid="spinner">
     <div className="ytp-spinner">
       <div className="ytp-spinner-container">
         <div className="ytp-spinner-rotator">

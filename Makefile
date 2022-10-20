@@ -8,6 +8,9 @@ lint:
 	$(COMPOSE_DEV) exec frontend npx eslint --fix 'src/**/*.{js,ts,tsx}'
 	$(COMPOSE_DEV) exec frontend npx prettier --write .
 
+test:
+	$(COMPOSE_DEV) run -e CI=true --rm frontend npm test -- --colors $(filter-out $@,$(MAKECMDGOALS))
+
 %: #Ignores unknown commands (and extra params)
 	@:
 

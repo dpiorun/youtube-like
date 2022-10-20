@@ -72,7 +72,11 @@ const Topbar = () => {
               placeholder="Search"
               onChange={(event) => setSearch(event.currentTarget.value)}
             />
-            <button className="input-group-text search-btn" type="submit">
+            <button
+              className="input-group-text search-btn"
+              type="submit"
+              aria-label="search-button"
+            >
               <Search size={'1.5em'} />
             </button>
           </div>
