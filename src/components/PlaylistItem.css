@@ -3,8 +3,37 @@
   flex-direction: row;
   flex-wrap: nowrap;
   margin-bottom: 3px;
+  width: 100%;
 }
 
 #item > .thumbnail {
   margin-inline-end: 8px;
+  max-width: 40%;
+}
+
+#item img {
+  width: 100%;
+}
+
+/* Small devices */
+@media only screen and (max-width: 656px) {
+  #item {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #item > .thumbnail {
+    max-width: 100%;
+  }
+
+  #item img {
+    width: 100%;
+  }
+}
+
+/* Big devices */
+@media only screen and (min-width: 1000px) {
+  h3 {
+    font-size: small;
+  }
 }

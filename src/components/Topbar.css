@@ -141,6 +141,7 @@ input:focus-visible {
     flex: 1;
     flex-basis: 1e-9px;
     justify-content: flex-end;
+    margin-inline-start: unset;
   }
 
   .searchcontainer .input-group-merge {

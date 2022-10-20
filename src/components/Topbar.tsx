@@ -54,9 +54,11 @@ const Topbar = () => {
 
   return (
     <div className="container">
-      <div className="logo">
-        <img alt="logo" src={logo} />
-      </div>
+      {!showSearchInput && (
+        <div className="logo">
+          <img alt="logo" src={logo} />
+        </div>
+      )}
       <div className="searchcontainer">
         <form onSubmit={handleSubmit}>
           <div className="input-group-merge input-group">
