@@ -6,6 +6,7 @@ import ContextStateProvider from './services/ContextStateProvider';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { searchResponse, youtubeVideoListResponse } from './testConfig';
+import { apiUrl } from './constants';
 
 const AllTheProviders: FC<{ children: React.ReactNode }> = ({ children }) => {
   return <ContextStateProvider>{children}</ContextStateProvider>;
@@ -20,10 +21,10 @@ export * from '@testing-library/react';
 export { customRender as render };
 
 export const server = setupServer(
-  rest.get('https://www.googleapis.com/youtube/v3/search', (_req, res, ctx) => {
+  rest.get(`${apiUrl}/search`, (_req, res, ctx) => {
     return res(ctx.json(searchResponse(5)));
   }),
-  rest.get('https://www.googleapis.com/youtube/v3/videos', (req, res, ctx) =>
+  rest.get(`${apiUrl}/videos`, (req, res, ctx) =>
     res(
       ctx.json(
         youtubeVideoListResponse(req.url.searchParams.get('id') ?? 'null')

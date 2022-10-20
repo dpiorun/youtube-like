@@ -1,12 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { apiUrl } from '../constants';
 
 export class RestYoutubeClient {
   private readonly fetcher: AxiosInstance;
   private readonly defaultParams: { [key: string]: string } = {};
 
-  constructor(apiUrl = 'https://www.googleapis.com/youtube/v3') {
+  constructor(originUrl = apiUrl) {
     this.fetcher = axios.create({
-      baseURL: apiUrl,
+      baseURL: originUrl,
       headers: {
         'Content-Type': 'application/json',
       },
