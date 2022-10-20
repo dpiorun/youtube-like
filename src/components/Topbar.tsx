@@ -3,7 +3,7 @@ import './Topbar.css';
 import logo from '../assets/images/youtube-like.png';
 import { Search, User } from 'react-feather';
 import { useSearchList } from '../hooks/useSearchList';
-import { useAppState } from '../services/ContextStateProvider';
+import { useDispatch } from '../services/ContextStateProvider';
 import { BREAKPOINTS } from '../constants';
 import classNames from 'classnames';
 import { useDetectOutsideClick } from '../hooks/useDetectOutsideClick';
@@ -17,30 +17,27 @@ const Topbar = () => {
   useDetectOutsideClick(inputSearchRef, () => {
     if (showSearchInput) setShowSearchInput(false);
   });
-  const { setAppState } = useAppState();
+  const { dispatch } = useDispatch();
 
   const { data, refetch, status, errorMsg } = useSearchList(search);
 
   useEffect(() => {
     if (data)
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         youtubeSearchList: data,
         isFetchingYoutubeSearchList: false,
-      }));
+      });
     else if (status === 'loading')
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         isFetchingYoutubeSearchList: true,
-      }));
+      });
     else if (status === 'error')
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         isError: true,
         errorMsg,
         isFetchingYoutubeSearchList: false,
-      }));
-  }, [data, status, setAppState, errorMsg]);
+      });
+  }, [data, status, dispatch, errorMsg]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -52,7 +49,7 @@ const Topbar = () => {
       return;
     }
     refetch();
-    setAppState((previous) => ({ ...previous, youtubeVideo: undefined }));
+    dispatch({ youtubeVideo: undefined });
   };
 
   return (

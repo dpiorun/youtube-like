@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import { YoutubeSearchListResponse, YoutubeVideo } from '../types/youtubeTypes';
 
 interface AppState {
@@ -42,4 +42,17 @@ export default function ContextStateProvider({
   );
 }
 
-export const useAppState = () => useContext(AppContextState);
+export const useAppState = () => {
+  const { appState } = useContext(AppContextState);
+  return { appState };
+};
+
+export const useDispatch = () => {
+  const { setAppState } = useContext(AppContextState);
+  const dispatch = useCallback(
+    (newState: Partial<AppState>) =>
+      setAppState((previous) => ({ ...previous, ...newState })),
+    [setAppState]
+  );
+  return { dispatch };
+};

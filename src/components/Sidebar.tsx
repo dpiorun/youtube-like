@@ -1,36 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useVideo } from '../hooks/useVideo';
-import { useAppState } from '../services/ContextStateProvider';
+import { useAppState, useDispatch } from '../services/ContextStateProvider';
 import PlaylistItem from './PlaylistItem';
 import './Sidebar.css';
 import Spinner from './Spinner';
 
 const Sidebar = () => {
-  const { appState, setAppState } = useAppState();
+  const { appState } = useAppState();
+  const { dispatch } = useDispatch();
 
   const [id, setId] = useState('');
   const { data, refetch, status, errorMsg } = useVideo(id);
 
   useEffect(() => {
     if (data)
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         youtubeVideo: data,
         isFetchingYoutubeVideo: false,
-      }));
+      });
     else if (status === 'loading')
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         isFetchingYoutubeVideo: true,
-      }));
+      });
     else if (status === 'error')
-      setAppState((previous) => ({
-        ...previous,
+      dispatch({
         isError: true,
         errorMsg,
         isFetchingYoutubeVideo: false,
-      }));
-  }, [data, status, setAppState, errorMsg]);
+      });
+  }, [data, status, dispatch, errorMsg]);
 
   const handleClick = (newId: string) => {
     if (newId !== id) {
