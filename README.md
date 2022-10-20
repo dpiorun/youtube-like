@@ -19,6 +19,7 @@ Before pushing anything run:
 ```shell
 make lint
 make test
+npm run e2e
 ```
 
 ## Tests
@@ -40,6 +41,11 @@ make test "my.test --json"
 
 For list of available options visit [Jest CLI Options](https://jestjs.io/docs/cli).
 
+### Running e2e tests
+Ensure that the application is currently running on http://localhost:3000 and run
+```sh
+npm run e2e
+```
 
 # Getting Started with Create React App
 
